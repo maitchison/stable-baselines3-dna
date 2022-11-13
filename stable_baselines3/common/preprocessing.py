@@ -100,7 +100,10 @@ def preprocess_obs(
     """
     if isinstance(observation_space, spaces.Box):
         if is_image_space(observation_space) and normalize_images:
-            return obs.float() / 255.0
+            try:
+                return obs.float() / 255.0
+            except:
+                pass
         return obs.float()
 
     elif isinstance(observation_space, spaces.Discrete):
